@@ -1,7 +1,7 @@
 version: 2.1
 
 executors:
-  golang:
+  ghctl:
     docker: 
       - image: amirashad/ghctl
 
@@ -9,7 +9,7 @@ commands:
   install:
     steps:
       - run:
-          name: install ghctl
+          name: ghctl version
           command: |
             ghctl --version
   apply:
@@ -20,14 +20,14 @@ commands:
 
 jobs:
   validate:
-    executor: golang
+    executor: ghctl
     steps:
-      - checkout
+      # - checkout
       - install
   apply:
-    executor: golang
+    executor: ghctl
     steps:
-      - checkout
+      # - checkout
       - install
       - apply 
 
