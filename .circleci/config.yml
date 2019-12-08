@@ -1,0 +1,43 @@
+version: 2.1
+
+executors:
+  ghctl:
+    docker:
+      - image: amirashad/ghctl
+
+commands:
+  validate:
+    steps:
+      - run:
+          name: ghctl version
+          command: ghctl --version
+  apply:
+    steps:
+      - run:
+          name: apply
+          command: ./apply.sh
+
+jobs:
+  validate:
+    executor: ghctl
+    steps:
+      - checkout
+      - validate
+  apply:
+    executor: ghctl
+    steps:
+      - checkout
+      - validate
+      - apply
+
+workflows:
+  GitOps-RepoCreator_workflow:
+    jobs:
+      - validate
+      - apply:
+          context: GITHUB
+          requires:
+            - validate
+          filters:
+            branches:
+              only: master
