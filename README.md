@@ -1,2 +1,2 @@
 # GitOps-RepoCreator
-GitHub Repository Creator with **ghctl** 
+GitHub Repository Creator with **ghctl**
