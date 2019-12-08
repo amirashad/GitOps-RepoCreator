@@ -6,7 +6,7 @@ executors:
       - image: amirashad/ghctl
 
 commands:
-  install:
+  validate:
     steps:
       - run:
           name: ghctl version
@@ -23,12 +23,12 @@ jobs:
     executor: ghctl
     steps:
       - checkout
-      - install
+      - validate
   apply:
     executor: ghctl
     steps:
       - checkout
-      - install
+      - validate
       - apply
 
 workflows:
