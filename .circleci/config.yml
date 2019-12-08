@@ -15,7 +15,7 @@ commands:
   apply:
     steps:
       - run:
-          name: apply repo yaml
+          name: apply
           command: ./apply.sh
 
 jobs:
