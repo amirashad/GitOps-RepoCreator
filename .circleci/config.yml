@@ -2,7 +2,7 @@ version: 2.1
 
 executors:
   ghctl:
-    docker: 
+    docker:
       - image: amirashad/ghctl
 
 commands:
@@ -22,14 +22,14 @@ jobs:
   validate:
     executor: ghctl
     steps:
-      # - checkout
+      - checkout
       - install
   apply:
     executor: ghctl
     steps:
-      # - checkout
+      - checkout
       - install
-      - apply 
+      - apply
 
 workflows:
   GitOps-RepoCreator_workflow:
