@@ -10,8 +10,7 @@ commands:
     steps:
       - run:
           name: ghctl version
-          command: |
-            ghctl --version
+          command: ghctl --version
   apply:
     steps:
       - run:
