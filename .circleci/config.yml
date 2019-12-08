@@ -1,0 +1,44 @@
+version: 2.1
+
+executors:
+  golang:
+    docker: 
+      - image: amirashad/ghctl
+
+commands:
+  install:
+    steps:
+      - run:
+          name: install ghctl
+          command: |
+            ghctl --version
+  apply:
+    steps:
+      - run:
+          name: apply repo yaml
+          command: ./apply.sh
+
+jobs:
+  validate:
+    executor: golang
+    steps:
+      - checkout
+      - install
+  apply:
+    executor: golang
+    steps:
+      - checkout
+      - install
+      - apply 
+
+workflows:
+  GitOps-RepoCreator_workflow:
+    jobs:
+      - validate
+      - apply:
+          context: GITHUB
+          requires:
+            - validate
+          # filters:
+          #   branches:
+          #     only: master
