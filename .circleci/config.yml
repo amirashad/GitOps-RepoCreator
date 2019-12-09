@@ -3,7 +3,7 @@ version: 2.1
 executors:
   ghctl:
     docker:
-      - image: amirashad/ghctl
+      - image: amirashad/ghctl:0.3.1
 
 commands:
   validate:
@@ -11,6 +11,9 @@ commands:
       - run:
           name: ghctl version
           command: ghctl --version
+      - run:
+          name: yq version
+          command: yq --version
   apply:
     steps:
       - run:
